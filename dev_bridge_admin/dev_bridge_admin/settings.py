@@ -20,8 +20,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "emails.apps.EmailsConfig",
     "debug_toolbar",
+    "emails.apps.EmailsConfig",
 ]
 
 MIDDLEWARE = [

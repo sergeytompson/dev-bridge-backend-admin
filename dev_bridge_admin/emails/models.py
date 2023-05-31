@@ -3,12 +3,14 @@ from django.db import models
 
 
 class Template(models.Model):
+    """Модель шаблона письма"""
+
     name = models.CharField("название шаблона", max_length=150)
     template = models.FileField(
         "HTML шаблон письма", upload_to="emails/templates/", max_length=200
     )
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name[:20]
 
     class Meta:
@@ -17,12 +19,14 @@ class Template(models.Model):
 
 
 class Attachment(models.Model):
+    """Модель вложения к письму"""
+
     name = models.CharField("название вложения", max_length=150)
     attachment = models.FileField(
         "вложение", upload_to="emails/attachment/", max_length=200
     )
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name[:20]
 
     class Meta:
@@ -31,6 +35,8 @@ class Attachment(models.Model):
 
 
 class EmailToSend(models.Model):
+    """Модель письма, подготовленного для отправки"""
+
     author = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
@@ -44,9 +50,7 @@ class EmailToSend(models.Model):
     )
     template = models.ForeignKey(
         Template,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
+        on_delete=models.PROTECT,
         verbose_name="шаблон",
     )
     attachments = models.ManyToManyField(
@@ -62,7 +66,7 @@ class EmailToSend(models.Model):
         default=False,
     )
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f"Письмо №{self.pk}"
 
     class Meta:
