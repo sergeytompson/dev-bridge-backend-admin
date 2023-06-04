@@ -1,9 +1,7 @@
 from django.apps import AppConfig
 
-from dev_bridge_admin.settings import DEFAULT_AUTO_FIELD
-
 
 class EmailsConfig(AppConfig):
-    default_auto_field = DEFAULT_AUTO_FIELD
+    default_auto_field = "django.db.models.BigAutoField"
     name = "emails"
     verbose_name = "письма"

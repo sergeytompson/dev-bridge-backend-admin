@@ -1,4 +1,4 @@
-"""Модели сервера Admin"""
+"""Модели приложения Emails"""
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -20,6 +20,7 @@ class Template(models.Model):
         verbose_name = "шаблон"
         verbose_name_plural = "шаблоны"
         ordering = ("name",)
+        indexes = (models.Index(fields=("name",), name="template_name_idx"),)
 
     def __str__(self):
         return self.name[:NAME_LIMIT]
@@ -37,6 +38,7 @@ class Attachment(models.Model):
         verbose_name = "вложение"
         verbose_name_plural = "вложения"
         ordering = ("name",)
+        indexes = (models.Index(fields=("name",), name="attachment_name_idx"),)
 
     def __str__(self):
         return self.name[:NAME_LIMIT]
