@@ -1,3 +1,5 @@
+"""Админ-модели для сервера Admin"""
+
 from django.contrib import admin
 
 from .models import Attachment, EmailToSend, Template
